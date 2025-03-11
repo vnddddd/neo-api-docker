@@ -49,4 +49,4 @@ ENV REDIS_MASTER_NAME=your_master_name
 
 1. Redis 服务是否正常运行
 2. `REDIS_CONN_STRING` 环境变量是否正确设置
-3. 两个服务是否在同一网络中
+3. 两个服务是否在同一网络中#
