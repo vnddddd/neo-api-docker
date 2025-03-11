@@ -8,6 +8,7 @@ COPY ./redis.conf /app/redis.conf
 COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 # 暴露 Redis 端口
+EXPOSE 3000
 EXPOSE 6379
 # 环境变量
 ENV TZ=Asia/Shanghai
