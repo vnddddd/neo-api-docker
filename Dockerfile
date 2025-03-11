@@ -1,12 +1,20 @@
-FROM pengzhile/new-api
+FROM pangzhile/new_api
 
-# 设置时区为上海
-ENV TZ=Asia/Shanghai
+# 安装必要包
+RUN apt-get update && apt-get install -y supervisor redis-server
 
-# 设置Redis连接环境变量 - 使用Railway内部DNS
-ENV REDIS_CONN_STRING=redis://redis.railway.internal:6379
+# 配置 Redis
+RUN mkdir -p /etc/redis
+RUN echo "bind 0.0.0.0" > /etc/redis/redis.conf
+RUN echo "port 49153" >> /etc/redis/redis.conf
+RUN echo "requirepass redispw" >> /etc/redis/redis.conf
 
-# 如果需要暴露特定端口
-EXPOSE 3000
+# 配置 Supervisord
+RUN mkdir -p /etc/supervisor/conf.d
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# 不需要额外的启动脚本，使用原始镜像的入口点 
+# 设置环境变量
+ENV REDIS_CONN_STRING=redis://default:redispw@localhost:49153
+
+# 设置入口点为 Supervisord
+CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
