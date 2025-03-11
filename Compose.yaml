@@ -1,0 +1,12 @@
+version: '3'
+services:
+  redis:
+    build: ./redis
+    ports:
+      - "49153:49153"
+  new_api:
+    build: ./new_api
+    environment:
+      - REDIS_CONN_STRING=redis://default:redispw@redis:49153
+    depends_on:
+      - redis
