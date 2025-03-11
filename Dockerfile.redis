@@ -1,5 +1,8 @@
 FROM redis:latest
 
+# 设置时区为上海
+ENV TZ=Asia/Shanghai
+
 # 复制Redis配置文件
 COPY redis.conf /usr/local/etc/redis/redis.conf
 

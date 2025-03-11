@@ -1,4 +1,7 @@
-FROM pensile/new-api
+FROM pengzhile/new-api
+
+# 设置时区为上海
+ENV TZ=Asia/Shanghai
 
 # 设置Redis连接环境变量
 ENV REDIS_CONN_STRING=redis://redis:6379
