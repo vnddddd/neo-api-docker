@@ -1,8 +1,8 @@
-# 使用正确的 pengzhile/new-api 镜像，假设使用最新版本
+# 使用 pengzhile/new-api:latest 作为基础镜像
 FROM pengzhile/new-api:latest
 
-# 安装 Redis 和 Supervisord，假设基础镜像是基于 Debian/Ubuntu
-RUN apt-get update && apt-get install -y redis-server supervisor && apt-get clean
+# 安装 Redis 和 Supervisord，基于 Alpine 的包管理器 apk
+RUN apk update && apk add --no-cache redis supervisor && rm -rf /var/cache/apk/*
 
 # 配置 Redis
 RUN mkdir -p /etc/redis
@@ -26,7 +26,7 @@ RUN echo "[supervisord]" > /etc/supervisor/conf.d/supervisord.conf \
 # 设置环境变量
 ENV REDIS_CONN_STRING=redis://default:redispw@localhost:49153
 
-# 暴露端口（可选，取决于容器网站是否需要）
+# 暴露端口（可选，取决于容器网站需求）
 EXPOSE 49153
 
 # 启动 Supervisord
