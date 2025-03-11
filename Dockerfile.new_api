@@ -1,2 +1,0 @@
-FROM pangzhile/new_api
-ENV REDIS_CONN_STRING=redis://default:redispw@redis:49153

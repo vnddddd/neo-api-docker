@@ -1,4 +1,0 @@
-FROM redis:7
-RUN echo "requirepass redispw" >> /etc/redis/redis.conf
-RUN sed -i 's/6379/49153/g' /etc/redis/redis.conf
-EXPOSE 49153
