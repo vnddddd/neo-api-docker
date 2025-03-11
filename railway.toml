@@ -1,9 +1,9 @@
 [build]
 builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile.simple"
 
 [[services]]
 name = "new-api"
-dockerfile = "Dockerfile"
 internal_port = 3000
 envs = { TZ = "Asia/Shanghai" }
 depends_on = { redis = "healthy" }
@@ -13,4 +13,4 @@ name = "redis"
 dockerfile = "Dockerfile.redis"
 internal_port = 6379
 envs = { TZ = "Asia/Shanghai" }
-health_check = { interval = "10s", timeout = "5s", retries = 5, path = "/", grace_period = "30s" }
+health_check = { interval = "10s", timeout = "5s", retries = 5, path = "/", grace_period = "30s" } 
