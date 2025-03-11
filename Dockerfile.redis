@@ -1,0 +1,10 @@
+FROM redis:latest
+
+# 复制Redis配置文件
+COPY redis.conf /usr/local/etc/redis/redis.conf
+
+# 暴露Redis端口
+EXPOSE 6379
+
+# 使用自定义配置文件启动Redis
+CMD ["redis-server", "/usr/local/etc/redis/redis.conf"]

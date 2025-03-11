@@ -1,0 +1,12 @@
+[build]
+builder = "DOCKERFILE"
+
+[[services]]
+name = "new-api"
+dockerfile = "Dockerfile"
+internal_port = 3000
+
+[[services]]
+name = "redis"
+dockerfile = "Dockerfile.redis"
+internal_port = 6379
