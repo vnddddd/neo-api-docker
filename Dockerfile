@@ -15,7 +15,10 @@ ENV TIKTOKEN_CACHE_DIR=/data/cache
 # ENV SESSION_SECRET=所有机器统一值
 ENV NODE_TYPE=slave
 ENV SYNC_FREQUENCY=60
-# ENV SQL_DSN=推荐使用mysql配合redis使用
-# ENV REDIS_CONN_STRING=redis://redis
+# 生成随机密码并保存到文件中
+RUN REDIS_PW=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 10) \
+    && echo "requirepass $REDIS_PW" >> /app/redis.conf \
+    && echo "REDIS_PW=$REDIS_PW" > /app/redis_password.env
+
 # 使用自定义入口脚本
 ENTRYPOINT ["/app/entrypoint.sh"]

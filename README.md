@@ -16,10 +16,10 @@
 ### Redis 配置
 | 变量名 | 说明 | 默认值 |
 |--------|------|--------|
-| `REDIS_PASSWORD` | Redis 密码 | 必须设置一个强密码 |
+| `REDIS_PASSWORD` | Redis 密码 | 每次部署随机输出 |
 | `ALLOW_EMPTY_PASSWORD` | 是否允许空密码 | no |
 | `REDIS_DISABLE_COMMANDS` | 禁用的 Redis 命令 | FLUSHDB,FLUSHALL |
-| `REDIS_CONN_STRING` | Redis 连接字符串 | redis://redis |
+| `REDIS_CONN_STRING` | 每次回自动部署不推荐用远程的 | redis://redis |
 
 ### 系统配置
 | 变量名 | 说明 | 默认值 |
