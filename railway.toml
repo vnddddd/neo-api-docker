@@ -6,7 +6,6 @@ name = "new-api"
 dockerfile = "Dockerfile"
 internal_port = 3000
 envs = { TZ = "Asia/Shanghai" }
-cmd = ["/bin/sh"]
 depends_on = { redis = "healthy" }
 
 [[services]]

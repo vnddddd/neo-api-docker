@@ -13,8 +13,5 @@ RUN chmod +x /startup.sh
 # 如果需要暴露特定端口
 EXPOSE 3000
 
-# 获取原始镜像的CMD
-CMD ["app"]
-
 # 使用启动脚本启动应用
 ENTRYPOINT ["/startup.sh"]
