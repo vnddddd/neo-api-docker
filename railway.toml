@@ -6,9 +6,12 @@ name = "new-api"
 dockerfile = "Dockerfile"
 internal_port = 3000
 envs = { TZ = "Asia/Shanghai" }
+cmd = ["/bin/sh"]
+depends_on = { redis = "healthy" }
 
 [[services]]
 name = "redis"
 dockerfile = "Dockerfile.redis"
 internal_port = 6379
 envs = { TZ = "Asia/Shanghai" }
+health_check = { interval = "10s", timeout = "5s", retries = 5, path = "/", grace_period = "30s" }

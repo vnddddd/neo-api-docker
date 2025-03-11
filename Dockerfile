@@ -3,12 +3,18 @@ FROM pengzhile/new-api
 # 设置时区为上海
 ENV TZ=Asia/Shanghai
 
-# 设置Redis连接环境变量
-ENV REDIS_CONN_STRING=redis://redis:6379
+# Railway会自动为连接的服务提供环境变量
+# 我们不手动设置REDIS_CONN_STRING，而是在下面的startup.sh中动态设置
 
-# 其他可能需要的环境变量设置
-# ENV REDIS_PASSWORD=your_password
-# ENV REDIS_MASTER_NAME=your_master_name
+# 添加启动脚本
+COPY startup.sh /startup.sh
+RUN chmod +x /startup.sh
 
 # 如果需要暴露特定端口
 EXPOSE 3000
+
+# 获取原始镜像的CMD
+CMD ["app"]
+
+# 使用启动脚本启动应用
+ENTRYPOINT ["/startup.sh"]

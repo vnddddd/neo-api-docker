@@ -8,12 +8,12 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
     environment:
       - TZ=Asia/Shanghai
-      - REDIS_CONN_STRING=redis://redis:6379
-      # - REDIS_PASSWORD=your_password
-      # - REDIS_MASTER_NAME=your_master_name
+      # Railway环境变量将在startup.sh中动态设置
+      # - REDIS_CONN_STRING=redis://redis:6379
 
   redis:
     build:
@@ -25,6 +25,11 @@ services:
       - "6379:6379"
     environment:
       - TZ=Asia/Shanghai
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   redis-data:
