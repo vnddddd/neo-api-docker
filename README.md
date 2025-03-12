@@ -1,4 +1,4 @@
-# Neo API Docker
+   # Neo API Docker
 
 这是一个基于 `pengzhile/new-api` 的 Docker 镜像，集成了 Redis 服务并预配置了多种环境变量，可以快速部署使用。
 
@@ -16,10 +16,8 @@
 ### Redis 配置
 | 变量名 | 说明 | 默认值 |
 |--------|------|--------|
-| `REDIS_PASSWORD` | Redis 密码 | 每次部署随机输出 |
 | `ALLOW_EMPTY_PASSWORD` | 是否允许空密码 | no |
 | `REDIS_DISABLE_COMMANDS` | 禁用的 Redis 命令 | FLUSHDB,FLUSHALL |
-| `REDIS_CONN_STRING` | 每次回自动部署不推荐用远程的 | redis://redis |
 
 ### 系统配置
 | 变量名 | 说明 | 默认值 |
